@@ -31,43 +31,22 @@ const menuToggle = document.getElementById('menuToggle');
 const mobileMenu = document.getElementById('mobileMenu');
 let menuOpen = false;
 
-function toggleMenu() {
-    menuOpen = !menuOpen;
+function setMenu(open) {
+    menuOpen = open;
     menuToggle.classList.toggle('active', menuOpen);
     mobileMenu.classList.toggle('open', menuOpen);
     document.body.style.overflow = menuOpen ? 'hidden' : '';
 }
 
-menuToggle.addEventListener('click', toggleMenu);
+menuToggle.addEventListener('click', () => setMenu(!menuOpen));
 
-// Close mobile menu on link click
-mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        if (menuOpen) toggleMenu();
-    });
+// ─── Direct booking ───
+const bookingUrl = 'https://m.booking.naver.com/booking/13/bizes/1702790';
+document.querySelectorAll('.js-open-booking').forEach(link => {
+    link.setAttribute('href', bookingUrl);
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noreferrer');
 });
-
-// ─── Booking Modal ───
-const bookingModal = document.getElementById('bookingModal');
-
-document.querySelectorAll('.js-open-booking').forEach(button => {
-    button.addEventListener('click', event => {
-        event.preventDefault();
-        if (!bookingModal) return;
-
-        if (typeof bookingModal.showModal === 'function') {
-            bookingModal.showModal();
-        } else {
-            bookingModal.setAttribute('open', '');
-        }
-    });
-});
-
-if (bookingModal) {
-    bookingModal.addEventListener('click', event => {
-        if (event.target === bookingModal) bookingModal.close();
-    });
-}
 
 // ─── Section Scroll Spy ───
 const sections = document.querySelectorAll('.section, .footer');
@@ -111,6 +90,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(targetId);
         if (target) {
             e.preventDefault();
+            if (menuOpen) setMenu(false);
             const headerHeight = header.offsetHeight;
             const targetTop = target.offsetTop - headerHeight;
             window.scrollTo({
@@ -167,10 +147,18 @@ document.getElementById('faqCloseAll')?.addEventListener('click', () => {
 
 // ─── Scroll Reveal Animation ───
 const revealElements = document.querySelectorAll(
-    '.section h2, .section .sub, .section .body, .card, .flow-item, .feature, .faq-item, blockquote, .info-item'
+    '.section h2, .section .sub, .section .body, .card, .flow-item, .feature, .faq-item, blockquote, .info-item, .membership-card, .cycle-item, .proof-card, .finder-prompt, .story-note, .space-quick-info'
 );
 
-revealElements.forEach(el => el.classList.add('reveal'));
+revealElements.forEach((el, index) => {
+    el.classList.add('reveal');
+    if (el.matches('.cycle-item, .proof-card')) el.classList.add(index % 2 ? 'reveal-right' : 'reveal-left');
+    else if (el.matches('.card, .membership-card')) el.classList.add('reveal-scale');
+});
+
+document.querySelectorAll('.flow-prompt').forEach((prompt, index) => {
+    prompt.dataset.motion = ['float', 'sway', 'pulse'][index % 3];
+});
 
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -296,37 +284,23 @@ finderGo?.addEventListener('click', () => {
 
 // ─── Mobile detail toggles ───
 document.querySelectorAll('.detail-toggle').forEach(button => {
+    button.dataset.label = button.textContent;
     button.addEventListener('click', () => {
         const container = button.closest('.card, .membership-card');
         const expanded = !container?.classList.contains('details-expanded');
         container?.classList.toggle('details-expanded', expanded);
         button.setAttribute('aria-expanded', String(expanded));
-        button.textContent = expanded ? '간단히 보기' : container?.classList.contains('membership-card') ? '혜택 자세히 보기' : '상세 단계 보기';
+        button.textContent = expanded ? '간단히 보기' : button.dataset.label || '포함 흐름 보기';
     });
 });
 
-// ─── Copy helpers ───
-async function copyText(text) {
-    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    textarea.style.position = 'fixed';
-    textarea.style.opacity = '0';
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand('copy');
-    textarea.remove();
-}
-
-document.querySelectorAll('.copy-button').forEach(button => {
-    button.addEventListener('click', async () => {
-        try {
-            await copyText(button.dataset.copy || '');
-            showToast('클립보드에 복사했습니다.');
-        } catch (_) {
-            showToast('복사하지 못했습니다. 다시 시도해 주세요.');
-        }
-    });
+// ─── Soft pointer response ───
+document.querySelectorAll('.section, .footer').forEach(section => {
+    section.addEventListener('pointermove', event => {
+        const rect = section.getBoundingClientRect();
+        section.style.setProperty('--pointer-x', `${event.clientX - rect.left}px`);
+        section.style.setProperty('--pointer-y', `${event.clientY - rect.top}px`);
+    }, { passive: true });
 });
 
 // ─── Reading convenience ───
