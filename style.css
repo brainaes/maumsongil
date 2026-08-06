@@ -1418,6 +1418,9 @@ body.footer-visible .floating-cta {
 .first-visit-copy p { margin: 0; line-height: 1.9; }
 .first-visit-copy p + p { margin-top: 12px; }
 .first-visit-copy strong { font-weight: 500; }
+.experience-note,
+.final-disclaimer { margin: 14px auto 18px; max-width: 760px; color: rgba(57, 65, 55, .62); font-size: .76rem; line-height: 1.65; }
+.cta-section .final-disclaimer { margin-top: 22px; }
 .first-visit-copy .text-accent {
     padding-bottom: 2px;
     background-image: linear-gradient(transparent calc(100% - 1px), rgba(167, 139, 82, .55) 1px);
