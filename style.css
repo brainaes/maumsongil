@@ -2404,3 +2404,19 @@ h1, h2, h3, .sub-title, .sub, .hero-desc, .flow-text, .card-desc, .membership-ca
 
 @keyframes mobile-bubble-float { 50% { translate: 0 -4px; } }
 @keyframes mobile-bubble-sway { 50% { translate: 6px -2px; } }
+
+/* 2026-08-13 brand copy and placement */
+.brand-lockup { display: flex; align-items: center; gap: 16px; }
+.header-tagline { color: rgba(255, 252, 245, .7); font-size: 11px; letter-spacing: .02em; white-space: nowrap; }
+.header.scrolled .header-tagline { color: var(--cream); }
+.hero-booking-top { align-self: flex-start; margin: 0 0 24px; }
+.hero-desc span { color: rgba(230, 220, 203, .76); font-size: .9em; }
+.hero .cta-group { width: min(100%, 300px); grid-template-columns: 1fr; }
+.program-hint { margin: 24px 0 14px; }
+.first-visit-copy { text-align: center; }
+
+@media (max-width: 768px) {
+    .brand-lockup { gap: 9px; }
+    .header-tagline { max-width: 145px; white-space: normal; font-size: 9px; line-height: 1.35; }
+    .hero-booking-top { align-self: center; width: min(100%, 360px); }
+}
