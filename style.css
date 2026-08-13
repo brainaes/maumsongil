@@ -2409,9 +2409,6 @@ h1, h2, h3, .sub-title, .sub, .hero-desc, .flow-text, .card-desc, .membership-ca
 .brand-lockup { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
 .header-tagline { color: rgba(255, 252, 245, .7); font-size: 10px; line-height: 1.25; letter-spacing: .01em; white-space: nowrap; }
 .header.scrolled .header-tagline { color: var(--cream); }
-.hero-desc span { color: rgba(230, 220, 203, .76); font-size: .9em; }
-.hero .hero-desc { margin-top: 64px; margin-bottom: 12px; }
-.hero .cta-group { margin-top: 0; }
 .program-hint { margin: 24px 0 14px; }
 .first-visit-copy { text-align: center; }
 
