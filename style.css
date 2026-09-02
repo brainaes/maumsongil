@@ -2601,4 +2601,5 @@ h1, h2, h3, .sub-title, .sub, .hero-desc, .flow-text, .card-desc, .membership-ca
     .membership-journey .membership-card h3 { font-size: 22px; line-height: 1.55; }
     .membership-note { margin-top: 34px; font-size: 12.5px; }
     .story-copy { gap: 16px; }
+    .first-booking-cta { padding-right: 8px; padding-left: 8px; font-size: 10px; letter-spacing: -.045em; white-space: nowrap; }
 }
