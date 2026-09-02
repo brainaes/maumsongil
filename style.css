@@ -2603,3 +2603,33 @@ h1, h2, h3, .sub-title, .sub, .hero-desc, .flow-text, .card-desc, .membership-ca
     .story-copy { gap: 16px; }
     .first-booking-cta { padding-right: 8px; padding-left: 8px; font-size: 10px; letter-spacing: -.045em; white-space: nowrap; }
 }
+
+/* Keep the reading axis and give section bridges their own space. */
+.program-linkage { width: min(calc(100% - 48px), 1020px); margin: 12px auto 36px; padding: 28px 0; border-top: 1px solid #d7c59f55; display: grid; grid-template-columns: 1fr 1fr; gap: 22px 40px; text-align: left; }
+.program-linkage h3 { grid-column: 1/-1; color: var(--cream); font-size: 22px; margin: 0; }
+.program-linkage p { margin: 0; line-height: 1.9; font-size: 12px; word-break: keep-all; }
+.program-linkage strong { display: block; color: var(--gold-soft); font-weight: 500; }
+.program-linkage span { display: block; color: var(--cream); opacity: .75; margin-top: 6px; }
+@media (max-width: 768px) { .program-linkage { grid-template-columns: 1fr; } }
+.hero-brand, .hero-desc { text-align: left; }
+.hero .content { align-items: flex-start; text-align: left; }
+.hero .main-title { text-align: left; }
+.promise-section, .journey-section { flex-direction: column; }
+.promise-section > .content.wide, .journey-section > .content.wide { padding-bottom: 28px; }
+.promise-section > .flow-prompt, .journey-section > .flow-prompt {
+    position: relative; left: auto; bottom: auto; translate: none;
+    flex-shrink: 0; display: table; margin: 16px auto 56px; animation: none;
+}
+.time-cards .stage-list {
+    flex-direction: column; flex-wrap: nowrap; align-items: stretch;
+    gap: 12px; width: 100%; padding: 20px 0 0; text-align: left;
+}
+.time-cards .stage-list li { position: relative; padding-left: 28px; font-size: 12px; line-height: 1.8; word-break: keep-all; }
+.time-cards .stage-list li::before { position: absolute; left: 0; }
+.first-booking-cta { white-space: nowrap; }
+#section9 .cta-group { width: min(100%, 680px); margin-inline: auto; grid-template-columns: 1fr; flex-direction: column; }
+#section9 .first-booking-cta { width: 100%; font-size: clamp(10px, 1.2vw, 15px); padding-inline: 12px; letter-spacing: -.025em; }
+@media (max-width: 768px) {
+    .promise-section > .flow-prompt, .journey-section > .flow-prompt { margin: 12px auto 38px; }
+    #section9 .first-booking-cta { font-size: clamp(9px, 2.6vw, 12px); padding-inline: 6px; letter-spacing: -.045em; }
+}
