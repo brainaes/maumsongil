@@ -215,10 +215,10 @@ const finderRetry = document.getElementById('finderRetry');
 let recommendedCard;
 const programNames = {
     first60: '첫 시간 · 60분',
-    mind90: '마음의 시간 · 90분',
-    texture120: '결의 시간 · 120분',
-    deep150: '깊은 시간 · 150분',
-    custom: '맞춤의 시간'
+    mind90: '정적 · 90분',
+    texture120: '균형 · 120분',
+    deep150: '고요 · 150분',
+    custom: '맞춤의 시간 · 멤버십(회원제)'
 };
 
 document.querySelectorAll('.js-open-finder').forEach(button => {
